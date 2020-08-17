@@ -60,15 +60,23 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: YesevaOne
+    - family: Montseraat
       fonts:
-        - asset: assets/fonts/YesevaOne-Regular.ttf
-    - family: NotoSansJP
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+          weight: 700
+    - family: Roboto
       fonts:
-        - asset: assets/fonts/NotoSansJP-Regular.otf
-    - family: Josefin
+        - asset: assets/fonts/Roboto-Regular.tff
+          weight: 400
+    - family: OpenSans
       fonts:
-        - asset: assets/fonts/JosefinSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.tff
+          weight: 800
+        - asset: assets/fonts/OpenSans-ExtraBold.tff
+          weight: 900
+        - asset: assets/fonts/OpenSans-ExtraBoldItalic.tff
+          weight: 900
+          style: italic
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
