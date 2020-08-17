@@ -20,6 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ListView getAccountListView() {
     return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
       itemCount: count,
       itemBuilder: (context, index) {
         return AnimationConfiguration.staggeredList(
@@ -104,21 +106,23 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 // *** Navbar ***
                 SizedBox(
-                  height: MediaQuery.of(context).size.height + 10,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          color: bgPrimary,
-                          child: Text(
-                            'Vault',
-                            style: navBarTextStyle,
+                  height: MediaQuery.of(context).size.height - 700,
+                  child: Container(
+                    color: bgPrimary,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            child: Text(
+                              'Vault',
+                              style: navBarTextStyle,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
