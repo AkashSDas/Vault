@@ -3,11 +3,10 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:vault/screens/AccountDetailsScreen.dart';
 import 'package:vault/services/db/db.dart';
-import 'package:vault/shared/AppBar.dart';
 
 import '../services/db/Account.dart';
 import '../services/db/db.dart';
-import '../styles/global.dart';
+import '../styles/theme.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -33,14 +32,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 80.0,
                 child: Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.elliptical(10, 10)),
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                  color: getRandomColor(),
+                  color: bgSecondary,
                   elevation: 4.0,
                   child: ListTile(
                     title: Text(
                       this.accountList[index].title.toString(),
-                      style: CardText,
+                      style: h2,
                     ),
                     trailing: GestureDetector(
                       child: Icon(
@@ -99,20 +98,75 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       color: Colors.yellow,
       child: Scaffold(
-        appBar: getAppBar('Vault', true),
         body: Container(
-          color: homeScrenBg,
-          child: Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: this.getAccountListView(),
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                // *** Navbar ***
+                SizedBox(
+                  height: MediaQuery.of(context).size.height + 10,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                          color: bgPrimary,
+                          child: Text(
+                            'Vault',
+                            style: navBarTextStyle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                // *** Number of accounts info ***
+                Container(
+                  height: 32,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.person,
+                        color: purple,
+                      ),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        '$count.toString() Accounts',
+                        style: h2,
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10.0,
+                ),
+
+                // *** Acount List ***
+                Container(
+                  child: this.getAccountListView(),
+                )
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             this.navigateToDetailScreen(Account('', '', ''));
           },
-          child: Icon(Icons.add),
-          backgroundColor: navBar,
+          child: Icon(
+            Icons.add,
+            color: white,
+          ),
+          backgroundColor: purple,
         ),
       ),
     );
