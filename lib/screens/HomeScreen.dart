@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 18.0),
 
                 // *** Acount List ***
-                Container(
+                Expanded(
                   child: this.getAccountListView(),
                 )
               ],
