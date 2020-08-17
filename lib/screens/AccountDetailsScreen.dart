@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vault/services/db/db.dart';
-import 'package:vault/shared/AppBar.dart';
 
 import '../services/db/Account.dart';
 import '../shared/AlertDialog.dart';
-import '../styles/global.dart';
+import '../styles/theme.dart';
 
 class AccountDetailsScreen extends StatefulWidget {
   final Account account;
@@ -90,134 +89,207 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     return WillPopScope(
       onWillPop: () => this.navigateToLastScreen(),
       child: Scaffold(
-        appBar: getAppBar(this.navbarTitle(), false),
         body: Container(
-          color: detailScreenBg,
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Card(
-              elevation: 5.0,
-              color: detailCardBg,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.elliptical(30, 40))),
-              child: ListView(
-                children: <Widget>[
-                  // Title
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: TextField(
-                      controller: titleController,
-                      style: FormText,
-                      onChanged: (value) => this.updateTitle(),
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                        labelStyle: Label,
-                        icon: Icon(Icons.title),
-                      ),
-                    ),
-                  ),
-
-                  // Description
-                  Padding(
-                    // padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    padding: EdgeInsets.all(15.0),
-                    child: TextField(
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      controller: descriptionController,
-                      style: FormText,
-                      onChanged: (value) => this.updateDescription(),
-                      decoration: InputDecoration(
-                        labelText: 'Description',
-                        labelStyle: Label,
-                        icon: Icon(Icons.description),
-                        // contentPadding: EdgeInsets.only(bottom: 80.0),
-                      ),
-                    ),
-                  ),
-
-                  // Password
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: TextField(
-                      controller: passwordController,
-                      style: FormText,
-                      onChanged: (value) => this.updatePassword(),
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: Label,
-                        icon: Icon(Icons.lock),
-                      ),
-                    ),
-                  ),
-
-                  // Save & Delete Buttons
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
+          color: bgPrimary,
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                // *** NavBar ***
+                SizedBox(
+                  height: 92,
+                  child: Container(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          child: MaterialButton(
-                            height: 15.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                debugPrint('Save buttom clicked');
-                                this._save();
-                              });
-                            },
-                            color: lightGreen,
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.save, color: formBtnIconColor),
-                                Text(
-                                  'Save',
-                                  textScaleFactor: 1.8,
-                                  style: FormBtn,
-                                ),
-                              ],
-                            ),
+                        Padding(padding: EdgeInsets.only(left: 32.0)),
+                        GestureDetector(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: white,
                           ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                         ),
-                        Container(
-                          width: 5.0,
-                        ),
-                        Expanded(
-                          child: MaterialButton(
-                            height: 15.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                debugPrint('Delete buttom clicked');
-                                this._delete();
-                              });
-                            },
-                            color: lightRed,
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.delete, color: formBtnIconColor),
-                                Text(
-                                  'Delete',
-                                  textScaleFactor: 1.8,
-                                  style: FormBtn,
-                                ),
-                              ],
+                        Padding(padding: EdgeInsets.only(left: 32.0)),
+                        Center(
+                          child: Container(
+                            child: Text(
+                              this.navbarTitle(),
+                              style: navBarTextStyle,
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+
+                SizedBox(height: 10),
+
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Card(
+                      elevation: 10.0,
+                      color: bgPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: ListView(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          // * Title *
+                          Container(
+                            decoration: BoxDecoration(
+                              color: bgSecondary,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: TextField(
+                                controller: titleController,
+                                style: h4,
+                                onChanged: (value) => this.updateTitle(),
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Title',
+                                  hintStyle: h4,
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: yellow,
+                                    size: 32,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // * Description *
+                          Container(
+                            margin: EdgeInsets.only(top: 18.0),
+                            decoration: BoxDecoration(
+                              color: bgSecondary,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: TextField(
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                controller: descriptionController,
+                                style: h4,
+                                onChanged: (value) => this.updateDescription(),
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Description',
+                                  hintStyle: h4,
+                                  icon: Icon(
+                                    Icons.description,
+                                    color: green,
+                                    size: 32,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // * Password *
+                          Container(
+                            margin: EdgeInsets.only(top: 18.0),
+                            decoration: BoxDecoration(
+                              color: bgSecondary,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: TextField(
+                                controller: passwordController,
+                                style: h4,
+                                onChanged: (value) => this.updatePassword(),
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Password',
+                                  hintStyle: h4,
+                                  icon: Icon(
+                                    Icons.lock,
+                                    color: orange,
+                                    size: 32,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // * Save & Delete Buttons *
+                          Container(
+                            height: 64.0,
+                            margin: EdgeInsets.only(top: 32.0),
+                            child: MaterialButton(
+                              height: 28.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              color: green,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.save, color: white, size: 32),
+                                    SizedBox(width: 12.0),
+                                    Text('Save', style: h2),
+                                  ],
+                                ),
+                              ),
+                              elevation: 5.0,
+                              onPressed: () {
+                                setState(() {
+                                  debugPrint('Save buttom clicked');
+                                  this._save();
+                                });
+                              },
+                            ),
+                          ),
+
+                          Container(
+                            height: 64.0,
+                            margin: EdgeInsets.only(top: 32.0),
+                            child: MaterialButton(
+                              height: 28.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              color: red,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.delete_outline,
+                                        color: white, size: 32),
+                                    SizedBox(width: 12.0),
+                                    Text('Delete', style: h2),
+                                  ],
+                                ),
+                              ),
+                              elevation: 5.0,
+                              onPressed: () {
+                                setState(() {
+                                  debugPrint('Delete buttom clicked');
+                                  this._delete();
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
