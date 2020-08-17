@@ -7,10 +7,12 @@ const Color purple = Color(0xFF6000FF);
 const Color pink = Color(0xFFCC00FF);
 const Color gray = Color(0xFF43424B);
 const Color yellow = Color(0xFFFAFF03);
-const Color green = Color(0xFF09FF12);
+const Color green = Color(0xFF06C20D);
 const Color orange = Color(0xFFFF9900);
+const Color red = Color(0xFFFF4343);
 
-const Color text = white;
+const Color text1 = white;
+const Color text2 = Colors.white54;
 
 const Color bgPrimary = black;
 const Color bgSecondary = gray;
@@ -34,33 +36,33 @@ const TextStyle loadingLogoTextStyle = TextStyle(
 const TextStyle navBarTextStyle = TextStyle(
   color: white,
   fontFamily: openSans,
-  fontSize: 30.0,
+  fontSize: 38.0,
   fontWeight: FontWeight.w900,
   fontStyle: FontStyle.italic,
 );
 
 const TextStyle h1 = TextStyle(
-  color: white,
+  color: text1,
   fontFamily: openSans,
   fontSize: 32.0,
   fontWeight: FontWeight.w800,
 );
 
 const TextStyle h2 = TextStyle(
-  color: white,
+  color: text1,
   fontFamily: montseraat,
   fontSize: 28.0,
   fontWeight: FontWeight.w700,
 );
 
 const TextStyle h3 = TextStyle(
-  color: white,
+  color: text1,
   fontFamily: roboto,
   fontSize: 26.0,
 );
 
 const TextStyle h4 = TextStyle(
-  color: white,
+  color: text2,
   fontFamily: montseraat,
-  fontSize: 24.0,
+  fontSize: 26.0,
 );
