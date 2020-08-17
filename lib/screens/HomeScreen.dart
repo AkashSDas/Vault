@@ -30,30 +30,36 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SlideAnimation(
             verticalOffset: 50.0,
             child: FadeInAnimation(
-              child: Container(
-                height: 80.0,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  color: bgSecondary,
-                  elevation: 4.0,
-                  child: ListTile(
-                    title: Text(
-                      this.accountList[index].title.toString(),
-                      style: h2,
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.open_in_new,
-                        color: Colors.white,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 14.0),
+                  Container(
+                    height: 80.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
-                      onTap: () {
-                        navigateToDetailScreen(this.accountList[index]);
-                      },
+                      color: bgSecondary,
+                      elevation: 4.0,
+                      child: ListTile(
+                        title: Text(
+                          this.accountList[index].title.toString(),
+                          style: h2,
+                        ),
+                        trailing: GestureDetector(
+                          child: Icon(
+                            Icons.open_in_new,
+                            color: pink,
+                            size: 32.0,
+                          ),
+                          onTap: () {
+                            navigateToDetailScreen(this.accountList[index]);
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
@@ -101,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       color: Colors.yellow,
       child: Scaffold(
         body: Container(
+          color: bgPrimary,
           child: SafeArea(
             child: Column(
               children: <Widget>[
@@ -108,7 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height - 700,
                   child: Container(
-                    color: bgPrimary,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,33 +132,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 18),
 
                 // *** Number of accounts info ***
                 Container(
-                  height: 32,
+                  height: 96,
                   child: Row(
                     children: <Widget>[
-                      Icon(
-                        Icons.person,
-                        color: purple,
-                      ),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Text(
-                        '$count.toString() Accounts',
-                        style: h2,
-                      ),
+                      Padding(padding: EdgeInsets.only(left: 32.0)),
+                      Icon(Icons.person, color: purple, size: 32.0),
+                      Padding(padding: EdgeInsets.only(left: 20.0)),
+                      Text('$count Accounts', style: h2),
                     ],
                   ),
                 ),
 
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 18.0),
 
                 // *** Acount List ***
                 Container(
