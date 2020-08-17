@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../routes.dart';
-import '../styles/global.dart';
+import '../styles/theme.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -10,9 +10,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  @override
-  void initState() {
-    super.initState();
+  navigateToHomeScreen() {
     Future.delayed(const Duration(milliseconds: 2000), () {
       // After some delay navigate to the home screen
       Navigator.pushReplacementNamed(context, home);
@@ -20,23 +18,27 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    this.navigateToHomeScreen();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgPrimary,
       body: Center(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: loadingScreenBg,
-          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
                 'Vault',
-                style: Headline1,
+                style: loadingLogoTextStyle,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              SizedBox(
+                height: 80,
               ),
               SpinKitRing(
                 color: loaderColor,
