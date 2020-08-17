@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 // *** Navbar ***
                 SizedBox(
-                  height: MediaQuery.of(context).size.height - 700,
+                  height: 92,
                   child: Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
