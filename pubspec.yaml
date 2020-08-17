@@ -66,15 +66,15 @@ flutter:
           weight: 700
     - family: Roboto
       fonts:
-        - asset: assets/fonts/Roboto-Regular.tff
+        - asset: assets/fonts/Roboto-Regular.ttf
           weight: 400
     - family: OpenSans
       fonts:
-        - asset: assets/fonts/OpenSans-Bold.tff
+        - asset: assets/fonts/OpenSans-Bold.ttf
           weight: 800
-        - asset: assets/fonts/OpenSans-ExtraBold.tff
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
           weight: 900
-        - asset: assets/fonts/OpenSans-ExtraBoldItalic.tff
+        - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
           weight: 900
           style: italic
   #
