@@ -90,23 +90,38 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 height: 92.0,
                 margin: EdgeInsets.symmetric(vertical: 8.0),
+                padding: EdgeInsets.symmetric(vertical: 6.0),
                 decoration: boxDecorationStyle,
                 child: Center(
                   child: ListTile(
                     title: Hero(
                       tag: this.accountList[index].title,
-                      child: Text(
-                        this.accountList[index].title.toString(),
-                        style: h3,
+                      child: SizedBox(
+                        height: 40.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Flexible(
+                              child: Text(
+                                this.accountList[index].title.toString(),
+                                style: h3,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(height: 5.0),
-                        Text(
-                          this.accountList[index].description.toString(),
-                          style: h4,
+                        Flexible(
+                          child: Text(
+                            this.accountList[index].description.toString(),
+                            style: h4,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
