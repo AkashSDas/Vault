@@ -110,7 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     trailing: InkResponse(
-                      onTap: () => print('Details Screen'),
+                      onTap: () {
+                        navigateToDetailScreen(this.accountList[index]);
+                      },
                       child: Container(
                         width: 50.0,
                         height: 50.0,
