@@ -18,56 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Account> accountList;
   int count = 0;
 
-  ListView getAccountListView() {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: count,
-      itemBuilder: (context, index) {
-        return AnimationConfiguration.staggeredList(
-          position: index,
-          duration: Duration(milliseconds: 369),
-          child: SlideAnimation(
-            verticalOffset: 50.0,
-            child: FadeInAnimation(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 14.0),
-                  Container(
-                    height: 80.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      color: bgSecondary,
-                      elevation: 4.0,
-                      child: ListTile(
-                        title: Text(
-                          this.accountList[index].title.toString(),
-                          style: h2,
-                        ),
-                        trailing: GestureDetector(
-                          child: Icon(
-                            Icons.open_in_new,
-                            color: pink,
-                            size: 32.0,
-                          ),
-                          onTap: () {
-                            navigateToDetailScreen(this.accountList[index]);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   void updateListView() {
     final Future<Database> dbFuture = db.initalizeDatabase();
     dbFuture.then((database) {
@@ -96,6 +46,95 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget _buildNavBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text('Vault', style: h2),
+        IconButton(
+          onPressed: () => print('Menu Button Pressed'),
+          icon: Icon(Icons.menu, size: 25.0),
+          color: white,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAccountStatus() {
+    String text;
+    if (this.count == 0) {
+      text = 'No accounts stored in your Vault';
+    } else if (this.count == 1) {
+      text = '$count account stored in your Vault';
+    } else {
+      text = '$count accounts stored in your Vault';
+    }
+
+    return Container(
+      child: Text(text, style: h1),
+    );
+  }
+
+  Widget _buildAccountList() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: count,
+      itemBuilder: (context, index) {
+        return AnimationConfiguration.staggeredList(
+          position: index,
+          duration: Duration(milliseconds: 369),
+          child: SlideAnimation(
+            verticalOffset: 50.0,
+            child: FadeInAnimation(
+              child: Container(
+                height: 92.0,
+                decoration: boxDecorationStyle,
+                child: Center(
+                  child: ListTile(
+                    title: Hero(
+                      tag: this.accountList[index].title,
+                      child: Text(
+                        this.accountList[index].title.toString(),
+                        style: h3,
+                      ),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: 5.0),
+                        Text(
+                          this.accountList[index].description.toString(),
+                          style: h4,
+                        ),
+                      ],
+                    ),
+                    trailing: InkResponse(
+                      onTap: () => print('Details Screen'),
+                      child: Container(
+                        width: 50.0,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: text1,
+                        ),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          size: 25.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (accountList == null) {
@@ -103,70 +142,32 @@ class _HomeScreenState extends State<HomeScreen> {
       this.updateListView();
     }
 
-    return Container(
-      color: Colors.yellow,
-      child: Scaffold(
-        body: Container(
-          color: bgPrimary,
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                // *** Navbar ***
-                SizedBox(
-                  height: 92,
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Center(
-                          child: Container(
-                            child: Text(
-                              'Vault',
-                              style: navBarTextStyle,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 18),
-
-                // *** Number of accounts info ***
-                Container(
-                  height: 96,
-                  child: Row(
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.only(left: 32.0)),
-                      Icon(Icons.person, color: purple, size: 32.0),
-                      Padding(padding: EdgeInsets.only(left: 20.0)),
-                      Text('$count Accounts', style: h2),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: 18.0),
-
-                // *** Acount List ***
-                Expanded(
-                  child: this.getAccountListView(),
-                )
-              ],
-            ),
-          ),
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(gradient: gradPrimary),
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+          children: <Widget>[
+            this._buildNavBar(),
+            Divider(height: 40, color: white),
+            this._buildAccountStatus(),
+            Divider(height: 40, color: white),
+            this._buildAccountList(),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            this.navigateToDetailScreen(Account('', '', ''));
-          },
-          child: Icon(
-            Icons.add,
-            color: white,
-          ),
-          backgroundColor: purple,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          this.navigateToDetailScreen(Account('', '', ''));
+        },
+        child: Icon(
+          Icons.add,
+          color: white,
+          size: 25.0,
         ),
+        backgroundColor: darkBlue,
       ),
     );
   }
