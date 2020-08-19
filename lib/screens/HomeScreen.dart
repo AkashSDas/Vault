@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:vault/screens/AccountDetailsScreen.dart';
@@ -161,19 +162,25 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(gradient: gradPrimary),
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-          children: <Widget>[
-            this._buildNavBar(),
-            Divider(height: 40, color: white),
-            this._buildAccountStatus(),
-            Divider(height: 40, color: white),
-            this._buildAccountList(),
-          ],
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(gradient: gradPrimary),
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+              children: <Widget>[
+                this._buildNavBar(),
+                Divider(height: 40, color: white),
+                this._buildAccountStatus(),
+                Divider(height: 40, color: white),
+                this._buildAccountList(),
+              ],
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
