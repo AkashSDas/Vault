@@ -89,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: FadeInAnimation(
               child: Container(
                 height: 92.0,
+                margin: EdgeInsets.symmetric(vertical: 8.0),
                 decoration: boxDecorationStyle,
                 child: Center(
                   child: ListTile(
