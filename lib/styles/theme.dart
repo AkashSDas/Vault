@@ -1,68 +1,108 @@
 import 'package:flutter/material.dart';
 
 // COLORS
-const Color black = Color(0xFF000000);
-const Color white = Color(0xFFFFFFFF);
-const Color purple = Color(0xFF6000FF);
-const Color pink = Color(0xFFCC00FF);
-const Color gray = Color(0xFF43424B);
-const Color yellow = Color(0xFFFAFF03);
-const Color green = Color(0xFF06C20D);
-const Color orange = Color(0xFFFF9900);
-const Color red = Color(0xFFFF4343);
+final white = Color(0xFFE8EEF1);
+final darkBlue = Color(0xFF1E3D58);
+final mediumBlue = Color(0xFF057DCD);
+final lightBlue = Color(0xFF43B0F1);
 
-const Color text1 = white;
-const Color text2 = Colors.white54;
+final text1 = white;
+final text2 = darkBlue;
 
-const Color bgPrimary = black;
-const Color bgSecondary = gray;
-
-const Color loaderColor = purple;
+// GRADIENTS
+final gradPrimary = LinearGradient(
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  colors: [
+    Color(0xFF0476D0),
+    Color(0xFF088FFA),
+    Color(0xFF35A4FB),
+    Color(0xFF62B8FC),
+  ],
+  stops: [0.1, 0.4, 0.7, 0.9],
+);
 
 // FONT FAMILIES
-const String openSans = 'OpenSans';
-const String montseraat = 'Montseraat';
-const String roboto = 'Roboto';
+final String openSans = 'OpenSans';
+final String montseraat = 'Montseraat';
+final String roboto = 'Roboto';
 
 // TEXT STYLES
-const TextStyle loadingLogoTextStyle = TextStyle(
+final loadingLogoTextStyle = TextStyle(
   color: white,
   fontFamily: openSans,
   fontSize: 80.0,
   fontWeight: FontWeight.w900,
-  fontStyle: FontStyle.italic,
 );
 
-const TextStyle navBarTextStyle = TextStyle(
+final navBarTextStyle = TextStyle(
   color: white,
   fontFamily: openSans,
   fontSize: 38.0,
   fontWeight: FontWeight.w900,
-  fontStyle: FontStyle.italic,
 );
 
-const TextStyle h1 = TextStyle(
+final h1 = TextStyle(
+  color: text1,
+  fontFamily: montseraat,
+  fontSize: 34.0,
+  fontWeight: FontWeight.w900,
+);
+
+final h2 = TextStyle(
   color: text1,
   fontFamily: openSans,
-  fontSize: 32.0,
+  fontSize: 30.0,
   fontWeight: FontWeight.w800,
 );
 
-const TextStyle h2 = TextStyle(
-  color: text1,
-  fontFamily: montseraat,
-  fontSize: 28.0,
-  fontWeight: FontWeight.w700,
-);
-
-const TextStyle h3 = TextStyle(
-  color: text1,
-  fontFamily: roboto,
-  fontSize: 26.0,
-);
-
-const TextStyle h4 = TextStyle(
+final h3 = TextStyle(
   color: text2,
   fontFamily: montseraat,
+  fontSize: 24.0,
+  fontWeight: FontWeight.bold,
+);
+
+final h4 = TextStyle(
+  color: text1,
+  fontFamily: roboto,
+  fontSize: 24.0,
+  fontWeight: FontWeight.w400,
+);
+
+final labelStyle = TextStyle(
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+  fontFamily: openSans,
+  fontSize: 24.0,
+);
+
+final hintTextStyle = TextStyle(
+  color: Colors.white54,
+  fontFamily: openSans,
+);
+
+final dialogTitleTextStyle = TextStyle(
+  color: text2,
+  fontFamily: openSans,
+  fontWeight: FontWeight.bold,
   fontSize: 26.0,
+);
+
+final dialogHintTextStyle = TextStyle(
+  color: text2,
+  fontFamily: roboto,
+  fontSize: 22.0,
+);
+
+final boxDecorationStyle = BoxDecoration(
+  color: Color(0xFF62B8FC),
+  borderRadius: BorderRadius.circular(10.0),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black12,
+      blurRadius: 6.0,
+      offset: Offset(0, 2),
+    ),
+  ],
 );
