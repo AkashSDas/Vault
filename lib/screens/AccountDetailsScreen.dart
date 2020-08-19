@@ -29,15 +29,15 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     Navigator.pop(context, true);
   }
 
-  void updateTitle() {
+  void _updateTitle() {
     account.title = titleController.text;
   }
 
-  void updateDescription() {
+  void _updateDescription() {
     account.description = descriptionController.text;
   }
 
-  void updatePassword() {
+  void _updatePassword() {
     account.password = passwordController.text;
   }
 
@@ -92,7 +92,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     );
   }
 
-  Widget _buildTitleTF(TextEditingController controller) {
+  Widget _buildTitleTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -102,7 +102,8 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           decoration: boxDecorationStyle,
           child: TextField(
             keyboardType: TextInputType.text,
-            controller: controller,
+            controller: titleController,
+            onChanged: (value) => this._updateTitle(),
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -123,7 +124,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     );
   }
 
-  Widget _buildDescriptionTF(TextEditingController controller) {
+  Widget _buildDescriptionTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -133,7 +134,8 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           decoration: boxDecorationStyle,
           child: TextField(
             keyboardType: TextInputType.multiline,
-            controller: controller,
+            controller: descriptionController,
+            onChanged: (value) => this._updateDescription(),
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -154,7 +156,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
     );
   }
 
-  Widget _buildPasswordTF(TextEditingController controller) {
+  Widget _buildPasswordTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -164,7 +166,8 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           decoration: boxDecorationStyle,
           child: TextField(
             keyboardType: TextInputType.text,
-            controller: controller,
+            controller: passwordController,
+            onChanged: (value) => this._updatePassword(),
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -258,11 +261,11 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           children: <Widget>[
             this._buildNavBar(this._getnavbarTitle()),
             Divider(height: 40.0, color: white),
-            this._buildTitleTF(titleController),
+            this._buildTitleTF(),
             SizedBox(height: 30.0),
-            this._buildDescriptionTF(descriptionController),
+            this._buildDescriptionTF(),
             SizedBox(height: 30.0),
-            this._buildPasswordTF(passwordController),
+            this._buildPasswordTF(),
             SizedBox(height: 30.0),
             this._buildSaveBtn(),
             this._buildDeleteBtn(),
