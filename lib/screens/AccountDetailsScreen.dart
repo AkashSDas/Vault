@@ -133,6 +133,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
         Container(
           decoration: boxDecorationStyle,
           child: TextField(
+            maxLines: null,
             keyboardType: TextInputType.multiline,
             controller: descriptionController,
             onChanged: (value) => this._updateDescription(),
@@ -142,7 +143,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 14.0),
               prefixIcon: Icon(
                 Icons.description,
                 color: Colors.white,
