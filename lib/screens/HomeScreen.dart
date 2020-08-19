@@ -78,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildAccountList() {
     return ListView.builder(
+      primary: false,
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: count,
