@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../routes.dart';
 import '../styles/theme.dart';
@@ -26,25 +25,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgPrimary,
-      body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Vault',
-                style: loadingLogoTextStyle,
-              ),
-              SizedBox(
-                height: 80,
-              ),
-              SpinKitRing(
-                color: loaderColor,
-                size: 120.0,
-              ),
-            ],
+      body: Container(
+        decoration: BoxDecoration(gradient: gradPrimary),
+        height: double.infinity,
+        width: double.infinity,
+        child: Center(
+          child: Text(
+            'Vault',
+            style: loadingLogoTextStyle,
           ),
         ),
       ),
